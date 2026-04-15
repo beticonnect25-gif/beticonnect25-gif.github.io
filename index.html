@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HomiGo Budget | إدارة الميزانية بذكاء</title>
+  <meta name="description" content="HomiGo Budget تطبيق ذكي لإدارة الميزانية الشهرية والمصاريف والمدفوعات بطريقة سهلة وعصرية." />
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --card: #ffffff;
+      --text: #16181d;
+      --muted: #6b7280;
+      --primary: #1f6feb;
+      --primary-dark: #1558bb;
+      --accent: #18b67f;
+      --border: #e6eaf2;
+      --shadow: 0 12px 36px rgba(17, 24, 39, 0.08);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: linear-gradient(180deg, #f8faff 0%, #f6f7fb 100%);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.78);
+      border-bottom: 1px solid rgba(230, 234, 242, 0.9);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 22px;
+    }
+
+    .brand-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), #61a4ff);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      box-shadow: 0 12px 24px rgba(31, 111, 235, 0.26);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #488cf0);
+      color: white;
+      box-shadow: 0 16px 28px rgba(31, 111, 235, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, var(--primary-dark), #387ce2);
+    }
+
+    .btn-light {
+      background: white;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-light:hover {
+      background: #f8fafc;
+    }
+
+    .hero {
+      padding: 72px 0 46px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-copy .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(24, 182, 127, 0.08);
+      color: #0e8f62;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.95;
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -50px -50px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(31, 111, 235, 0.14), transparent 70%);
+    }
+
+    .phone {
+      border-radius: 28px;
+      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      padding: 14px;
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.3);
+    }
+
+    .phone-screen {
+      background: linear-gradient(180deg, #f7fbff 0%, #edf3fb 100%);
+      min-height: 530px;
+      border-radius: 22px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .screen-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .screen-chip {
+      background: white;
+      border: 1px solid #dde5f0;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .balance-box {
+      background: linear-gradient(135deg, #1f6feb, #77aef7);
+      color: white;
+      border-radius: 24px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .balance-box small {
+      opacity: 0.9;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .balance-box strong {
+      font-size: 30px;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .mini-card {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 10px;
+      border-radius: 16px;
+      font-size: 12px;
+    }
+
+    .list-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .list-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .list-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .row-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      background: #edf4ff;
+    }
+
+    .amount-pos {
+      color: #0d9a6f;
+      font-weight: 800;
+    }
+
+    .amount-neg {
+      color: #d64747;
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 36px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 40px);
+    }
+
+    .section p.lead {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 760px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card,
+    .shot-card,
+    .faq-item,
+    .contact-card,
+    .policy-card,
+    .download-card,
+    .footer-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-card {
+      padding: 22px;
+    }
+
+    .feature-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #eef5ff, #e8fbf4);
+    }
+
+    .feature-card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .shots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .shot-card {
+      overflow: hidden;
+    }
+
+    .shot-visual {
+      min-height: 270px;
+      background: linear-gradient(180deg, #dbeafe 0%, #eff6ff 100%);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 54px;
+    }
+
+    .shot-content {
+      padding: 18px;
+    }
+
+    .shot-content h3 {
+      margin: 0 0 10px;
+    }
+
+    .shot-content p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .download-card {
+      padding: 26px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: center;
+      background: linear-gradient(135deg, #0f172a, #16223f);
+      color: white;
+      border: none;
+    }
+
+    .download-card p {
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.9;
+      margin: 12px 0 0;
+    }
+
+    .download-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 20px 22px;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card,
+    .policy-card {
+      padding: 22px;
+    }
+
+    .contact-card h3,
+    .policy-card h3 {
+      margin: 0 0 12px;
+    }
+
+    .contact-card p,
+    .policy-card p,
+    .policy-card li {
+      color: var(--muted);
+      line-height: 1.9;
+      margin: 0;
+    }
+
+    .policy-card ul {
+      padding: 0 18px 0 0;
+      margin: 0;
+    }
+
+    .footer {
+      padding: 24px 0 50px;
+    }
+
+    .footer-card {
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    @media (max-width: 1050px) {
+      .hero-grid,
+      .download-card,
+      .grid-3,
+      .shots-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        padding: 12px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .hero-actions,
+      .section-head,
+      .footer-card {
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .mini-stats,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-screen {
+        min-height: 460px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <span class="brand-badge">💰</span>
+        <span>HomiGo Budget</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#features">المميزات</a>
+        <a href="#screens">اللقطات</a>
+        <a href="#download">التحميل</a>
+        <a href="#privacy">الخصوصية</a>
+        <a href="#contact">التواصل</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">✨ إدارة مالية أبسط وأكثر وضوحًا</span>
+          <h1>تحكم في ميزانيتك الشهرية من مكان واحد</h1>
+          <p>
+            HomiGo Budget تطبيق يساعدك على تتبع المصروفات، تسجيل الدفعات، متابعة الالتزامات الشهرية،
+            وتنظيم دخلك ومصاريفك اليومية بواجهة حديثة وسهلة الاستخدام.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.smart_solar" target="_blank" rel="noopener noreferrer">تحميل من Google Play</a>
+            <a class="btn btn-light" href="#features">استكشاف المميزات</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="screen-top">
+                <span class="screen-chip">يونيو 2026</span>
+                <span class="screen-chip">ملخص الميزانية</span>
+              </div>
+
+              <div class="balance-box">
+                <small>الرصيد المتبقي هذا الشهر</small>
+                <strong>3,420 ر.س</strong>
+                <div class="mini-stats">
+                  <div class="mini-card">الدخل<br><strong>8,500</strong></div>
+                  <div class="mini-card">المصروف<br><strong>4,380</strong></div>
+                  <div class="mini-card">الادخار<br><strong>700</strong></div>
+                </div>
+              </div>
+
+              <div class="list-card">
+                <div class="list-row">
+                  <div class="row-left">
+                    <div class="icon">🏠</div>
+                    <div>
+                      <strong>الإيجار</strong><br />
+                      <span class="muted">دفعة شهرية</span>
+                    </div>
+                  </div>
+                  <span class="amount-neg">-1,500</span>
+                </div>
+                <div class="list-row">
+                  <div class="row-left">
+                    <div class="icon">🛒</div>
+                    <div>
+                      <strong>مشتريات</strong><br />
+                      <span class="muted">احتياجات منزلية</span>
+                    </div>
+                  </div>
+                  <span class="amount-neg">-420</span>
+                </div>
+              </div>
+
+              <div class="list-card">
+                <div class="list-row">
+                  <div class="row-left">
+                    <div class="icon">💼</div>
+                    <div>
+                      <strong>راتب</strong><br />
+                      <span class="muted">تمت الإضافة</span>
+                    </div>
+                  </div>
+                  <span class="amount-pos">+8,500</span>
+                </div>
+                <div class="list-row">
+                  <div class="row-left">
+                    <div class="icon">📱</div>
+                    <div>
+                      <strong>فاتورة إنترنت</strong><br />
+                      <span class="muted">تذكير قريب</span>
+                    </div>
+                  </div>
+                  <span class="amount-neg">-250</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>مميزات مصممة للاستخدام اليومي</h2>
+            <p class="lead">
+              ركزنا في HomiGo Budget على البساطة والوضوح والسرعة حتى تتمكن من متابعة أمورك المالية
+              بدون تعقيد وبدون خطوات كثيرة.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>متابعة المصروفات</h3>
+            <p>سجل كل عملية بسهولة، وصنفها حسب النوع، وراجع نمط الصرف خلال الشهر بشكل واضح وسريع.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🧾</div>
+            <h3>تنظيم الفواتير</h3>
+            <p>تابع الدفعات الشهرية والمبالغ المستحقة في مكان واحد حتى لا يفوتك أي التزام مهم.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🔔</div>
+            <h3>تذكيرات ذكية</h3>
+            <p>احصل على تنبيهات للتواريخ المهمة والدفعات القادمة حتى تبقى ميزانيتك تحت السيطرة.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>تقارير مختصرة</h3>
+            <p>شاهد ملخصًا سريعًا للدخل والمصروفات والرصيد المتبقي لمساعدتك على اتخاذ قرارات أفضل.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🌙</div>
+            <h3>واجهة مريحة</h3>
+            <p>تصميم بسيط وحديث يساعدك على الوصول إلى أهم المعلومات بسرعة مهما كان حجم بياناتك.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">☁️</div>
+            <h3>مرونة في الاستخدام</h3>
+            <p>ابدأ بتنظيم ميزانيتك بسهولة واحتفظ ببياناتك في تجربة مرتبة وواضحة وقابلة للتوسع.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="screens">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>لقطات من واجهة التطبيق</h2>
+            <p class="lead">يمكنك لاحقًا استبدال هذه البطاقات بصور فعلية من التطبيق داخل Google Play أو الموقع نفسه.</p>
+          </div>
+        </div>
+
+        <div class="shots-grid">
+          <article class="shot-card">
+            <div class="shot-visual">📱</div>
+            <div class="shot-content">
+              <h3>الشاشة الرئيسية</h3>
+              <p>عرض سريع لأهم الأرقام مثل الرصيد الحالي، المصاريف، والدفعات القادمة.</p>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="shot-visual">📋</div>
+            <div class="shot-content">
+              <h3>تفاصيل العمليات</h3>
+              <p>قائمة مرتبة للمدفوعات والدخل مع تصنيفات سهلة تساعدك على فهم حركة المال.</p>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="shot-visual">📉</div>
+            <div class="shot-content">
+              <h3>التحليلات والتقارير</h3>
+              <p>مخططات وملخصات تساعدك على معرفة أين يذهب إنفاقك وكيف تحسن ميزانيتك.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="download">
+      <div class="container">
+        <div class="download-card">
+          <div>
+            <h2 style="margin:0; font-size: clamp(28px, 4vw, 38px);">ابدأ الآن مع HomiGo Budget</h2>
+            <p>
+              حمّل التطبيق وابدأ في تسجيل مصاريفك وتنظيم دفعاتك الشهرية ومتابعة ميزانيتك بطريقة أبسط
+              وأوضح من الجداول التقليدية.
+            </p>
+
+            <div class="stats">
+              <div class="stat">
+                <strong>سهولة</strong>
+                <span>واجهة واضحة وسريعة</span>
+              </div>
+              <div class="stat">
+                <strong>تنظيم</strong>
+                <span>كل التزاماتك في مكان واحد</span>
+              </div>
+              <div class="stat">
+                <strong>متابعة</strong>
+                <span>تحكم أفضل في الإنفاق</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="download-box">
+            <h3 style="margin-top:0;">رابط التحميل</h3>
+            <p style="margin-bottom:18px;">استبدل الرابط الحالي برابط التطبيق النهائي في Google Play عند النشر.</p>
+            <a class="btn btn-primary" style="width:100%;" href="https://play.google.com/store/apps/details?id=com.smart_solar" target="_blank" rel="noopener noreferrer">فتح صفحة التطبيق</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="privacy">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>سياسة الخصوصية</h2>
+            <p class="lead">هذا نص مختصر داخل الصفحة الرئيسية. ويمكن لاحقًا فصله في صفحة مستقلة باسم privacy.html.</p>
+          </div>
+        </div>
+
+        <div class="policy-card">
+          <h3>ملخص الخصوصية</h3>
+          <ul>
+            <li>نحن نحترم خصوصية المستخدم ونسعى لحماية البيانات المرتبطة باستخدام التطبيق.</li>
+            <li>قد يتم استخدام بعض البيانات لتحسين الأداء، حفظ الإعدادات، وتقديم تجربة أفضل داخل التطبيق.</li>
+            <li>لا يتم بيع بيانات المستخدم الشخصية إلى أطراف خارجية.</li>
+            <li>قد يستخدم التطبيق خدمات طرف ثالث مثل التحليلات أو الإعلانات أو تسجيل الدخول بحسب الإعدادات المفعلة.</li>
+            <li>باستخدامك للتطبيق فإنك توافق على طريقة استخدام البيانات وفقًا لسياسة الخصوصية المعتمدة.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>الأسئلة الشائعة</h2>
+            <p class="lead">إجابات مختصرة على أهم الأسئلة التي قد يحتاجها المستخدم قبل تحميل التطبيق.</p>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>هل التطبيق مناسب للاستخدام الشخصي؟</h3>
+            <p>نعم، التطبيق موجه للأفراد الذين يريدون متابعة دخلهم ومصروفاتهم والتزاماتهم الشهرية بسهولة.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3>هل أحتاج خبرة محاسبية لاستخدامه؟</h3>
+            <p>لا، الواجهة مصممة لتكون مباشرة وواضحة حتى للمستخدم الذي يريد فقط تنظيم مصاريفه اليومية.</p>
+          </article>
+
+          <article class="faq-item">
+            <h3>هل يمكن تحديث الموقع لاحقًا؟</h3>
+            <p>نعم، يمكنك تعديل النصوص والصور والروابط في أي وقت من GitHub ثم ستتحدث الصفحة تلقائيًا.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>تواصل معنا</h2>
+            <p class="lead">يمكنك تعديل هذه البيانات لتظهر بنفس معلومات صفحة المتجر أو الدعم الخاصة بك.</p>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-card">
+            <h3>البريد الإلكتروني</h3>
+            <p><a href="mailto:traikeyy@gmail.com">traikeyy@gmail.com</a></p>
+          </article>
+
+          <article class="contact-card">
+            <h3>رقم الهاتف</h3>
+            <p><a href="tel:+966536955025">+966536955025</a></p>
+          </article>
+
+          <article class="contact-card">
+            <h3>ملف app-ads.txt</h3>
+            <p><a href="/homigo-ads/app-ads.txt" target="_blank" rel="noopener noreferrer">فتح الملف مباشرة</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-card">
+        <p>© 2026 HomiGo Budget. جميع الحقوق محفوظة.</p>
+        <div class="nav-links">
+          <a href="#privacy">الخصوصية</a>
+          <a href="#contact">التواصل</a>
+          <a href="/homigo-ads/app-ads.txt" target="_blank" rel="noopener noreferrer">app-ads.txt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
