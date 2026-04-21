@@ -64,7 +64,7 @@ ul{
 </div>
 
 <h1 data-i18n="h1">سياسة الخصوصية</h1>
-<p data-i18n="date">آخر تحديث: 19-04-2026</p>
+<p data-i18n="date">آخر تحديث: 21-04-2026</p>
 
 <div data-i18n="content"></div>
 
@@ -77,7 +77,7 @@ ar: {
 back:'⬅ الرجوع للرئيسية',
 lang:'اللغة',
 h1:'سياسة الخصوصية',
-date:'آخر تحديث: 19-04-2026',
+date:'آخر تحديث: 21-04-2026',
 
 content: `
 <p>توضح هذه السياسة كيفية تعامل تطبيق HomiGo Budget مع البيانات والصلاحيات عند استخدام التطبيق.</p>
@@ -103,39 +103,59 @@ content: `
 </ul>
 
 <h2>2. إذن الكاميرا</h2>
-<p>قد يطلب التطبيق إذن الوصول إلى الكاميرا فقط عند استخدام ميزة مسح رمز QR أو الباركود بشكل مباشر من قبل المستخدم.</p>
+<p>قد يطلب التطبيق إذن الوصول إلى الكاميرا فقط عند استخدام ميزات مرتبطة بالفواتير بشكل مباشر من قبل المستخدم، مثل مسح رمز QR أو الباركود، أو تصوير الفاتورة لإرفاقها بالمصروف.</p>
 <ul>
-<li>يتم طلب إذن الكاميرا فقط عند الحاجة الفعلية لميزة المسح</li>
-<li>يُستخدم إذن الكاميرا فقط لقراءة رمز QR أو الباركود</li>
+<li>يتم طلب إذن الكاميرا فقط عند الحاجة الفعلية لميزة المسح أو التصوير</li>
+<li>يُستخدم إذن الكاميرا فقط لقراءة رمز QR أو الباركود، أو لالتقاط صورة الفاتورة عند طلب المستخدم</li>
 <li>لا يتم استخدام الكاميرا دون تفاعل مباشر من المستخدم</li>
+<li>لا يتم استخدام الكاميرا في الخلفية</li>
 </ul>
 
-<h2>3. استخدام المعلومات</h2>
+<h2>3. تصوير الفاتورة وحفظها</h2>
+<p>عند استخدام ميزة تصوير الفاتورة داخل التطبيق:</p>
+<ul>
+<li>يتم التقاط صورة الفاتورة من خلال الكاميرا عند طلب المستخدم فقط</li>
+<li>يتم تحويل صورة الفاتورة إلى ملف PDF داخل التطبيق</li>
+<li>يتم حفظ ملف PDF محليًا داخل مساحة التطبيق على جهاز المستخدم فقط</li>
+<li>لا يتم رفع صورة الفاتورة أو ملف PDF إلى خوادمنا من خلال هذه الميزة</li>
+<li>لا يتم إرسال صورة الفاتورة أو ملف PDF إلى أي طرف ثالث من خلال هذه الميزة</li>
+</ul>
+
+<h2>4. مسح الباركود أو QR</h2>
+<p>عند استخدام ميزة مسح الباركود أو رمز QR:</p>
+<ul>
+<li>تتم قراءة محتوى الرمز داخل التطبيق من أجل استخراج معلومات الفاتورة أو الرقم المرتبط بها</li>
+<li>تُستخدم البيانات الناتجة فقط لمساعدة المستخدم في تعبئة بيانات المصروف أو الفاتورة</li>
+<li>لا يتم رفع محتوى الباركود أو رمز QR إلى خوادمنا من خلال هذه الميزة، إلا إذا تم توضيح خلاف ذلك داخل التطبيق أو في تحديث لاحق لهذه السياسة</li>
+</ul>
+
+<h2>5. استخدام المعلومات</h2>
 <p>تُستخدم البيانات والصلاحيات للأغراض التالية:</p>
 <ul>
 <li>التحقق من حالة الاشتراك داخل التطبيق</li>
 <li>ربط الاشتراك بحساب المستخدم</li>
 <li>عرض الإعلانات وتحسينها عبر Google AdMob</li>
+<li>تمكين ميزات مسح الفواتير والباركود وتصوير الفواتير عند طلب المستخدم</li>
 <li>تحسين تجربة المستخدم</li>
 <li>الامتثال لسياسات Google Play</li>
 </ul>
 
-<h2>4. مشاركة المعلومات</h2>
+<h2>6. مشاركة المعلومات</h2>
 <p>قد تتم مشاركة بعض البيانات مع:</p>
 <ul>
 <li>Google LLC من خلال AdMob وخدمات Google</li>
 </ul>
 <p>ولا يتم بيع البيانات أو مشاركتها مع أي أطراف أخرى خارج ما هو مذكور في هذه السياسة.</p>
 
-<h2>5. بيانات الميزانية</h2>
+<h2>7. بيانات الميزانية والمصروفات</h2>
 <p>جميع بيانات الميزانية والمصروفات التي يُدخلها المستخدم:</p>
 <ul>
 <li>تُخزّن محليًا على جهاز المستخدم فقط</li>
 <li>لا يتم رفعها إلى أي خادم خارجي</li>
-<li>لا يمكن للمطور أو أي جهة خارجية الوصول إليها</li>
+<li>لا يمكن للمطور أو أي جهة خارجية الوصول إليها ما دامت محفوظة محليًا فقط على جهاز المستخدم</li>
 </ul>
 
-<h2>6. الاشتراكات</h2>
+<h2>8. الاشتراكات</h2>
 <p>عند شراء اشتراك داخل التطبيق:</p>
 <ul>
 <li>يتم ربط الاشتراك بحساب المستخدم (UID)</li>
@@ -143,7 +163,7 @@ content: `
 <li>يتم تخزين حالة الاشتراك فقط على الخادم لأغراض التحقق</li>
 </ul>
 
-<h2>7. حذف الحساب والبيانات</h2>
+<h2>9. حذف الحساب والبيانات</h2>
 <p>يمكن للمستخدم طلب حذف حسابه والبيانات المرتبطة به في أي وقت عبر التواصل على البريد الإلكتروني التالي:</p>
 <p>traikeyy@gmail.com</p>
 
@@ -156,15 +176,15 @@ content: `
 <li>عدم إمكانية استرجاع البيانات بعد تنفيذ الحذف</li>
 </ul>
 
-<p>ملاحظة: بيانات الميزانية والمصروفات المخزنة محليًا على الجهاز يمكن حذفها من خلال حذف التطبيق أو مسح بيانات التطبيق من إعدادات الهاتف.</p>
+<p>ملاحظة: بيانات الميزانية والمصروفات وملفات الفواتير المحفوظة محليًا على الجهاز يمكن حذفها من خلال حذف التطبيق أو مسح بيانات التطبيق من إعدادات الهاتف.</p>
 
-<h2>8. الفئة العمرية</h2>
+<h2>10. الفئة العمرية</h2>
 <p>التطبيق مخصص للمستخدمين الذين تبلغ أعمارهم 18 عامًا أو أكثر، ولا يستهدف الأطفال.</p>
 
-<h2>9. التغييرات على سياسة الخصوصية</h2>
+<h2>11. التغييرات على سياسة الخصوصية</h2>
 <p>قد يتم تحديث هذه السياسة من وقت لآخر، وسيتم نشر أي تحديث داخل التطبيق أو على صفحة المتجر أو في هذه الصفحة.</p>
 
-<h2>10. التواصل</h2>
+<h2>12. التواصل</h2>
 <p>لأي استفسارات تتعلق بالخصوصية أو حذف البيانات:</p>
 <p>traikeyy@gmail.com</p>
 `
@@ -174,7 +194,7 @@ en: {
 back:'⬅ Back to Home',
 lang:'Language',
 h1:'Privacy Policy',
-date:'Last updated: 19-04-2026',
+date:'Last updated: 21-04-2026',
 
 content: `
 <p>This policy explains how HomiGo Budget handles data and permissions when users interact with the app.</p>
@@ -183,41 +203,106 @@ content: `
 <p>HomiGo Budget is committed to protecting user privacy and being transparent about how data and device permissions are used.</p>
 
 <h2>1. Information Collection</h2>
-<p>The app does not directly collect sensitive personal information such as phone number or address.</p>
+<p>The app does not directly collect sensitive personal information such as phone number or address as a core part of using the app.</p>
 
+<p>The app may use certain account-related data for operational purposes, such as:</p>
 <ul>
-<li>User ID (UID) via Firebase Authentication</li>
-<li>Subscription data</li>
+<li>User ID (UID) through Firebase Authentication when signing in with Google</li>
+<li>Subscription-related data such as subscription status and expiry date</li>
+</ul>
+
+<p>The app may also use third-party services such as Google AdMob, which may automatically collect certain technical information, such as:</p>
+<ul>
+<li>Advertising ID</li>
+<li>Device type and operating system</li>
+<li>General app usage information</li>
+<li>IP address indirectly</li>
 </ul>
 
 <h2>2. Camera Permission</h2>
-<p>The app may request camera access only for QR scanning.</p>
-
-<h2>3. Use of Information</h2>
+<p>The app may request access to the camera only when the user directly uses invoice-related features, such as scanning a QR code or barcode, or taking a photo of an invoice to attach it to an expense.</p>
 <ul>
-<li>Subscription verification</li>
-<li>Improve performance</li>
+<li>Camera permission is requested only when it is actually needed for scanning or capturing an invoice</li>
+<li>The camera is used only to scan QR codes or barcodes, or to capture an invoice image when requested by the user</li>
+<li>The camera is not used without direct user interaction</li>
+<li>The camera is not used in the background</li>
 </ul>
 
-<h2>4. Information Sharing</h2>
-<p>No data is sold.</p>
+<h2>3. Invoice Capture and Storage</h2>
+<p>When the invoice capture feature is used inside the app:</p>
+<ul>
+<li>An invoice image is captured through the camera only when requested by the user</li>
+<li>The captured invoice image is converted into a PDF file inside the app</li>
+<li>The PDF file is stored locally only within the app's space on the user's device</li>
+<li>The invoice image or PDF file is not uploaded to our servers through this feature</li>
+<li>The invoice image or PDF file is not shared with any third party through this feature</li>
+</ul>
 
-<h2>5. Budget Data</h2>
-<p>Stored locally only.</p>
+<h2>4. Barcode or QR Scanning</h2>
+<p>When the barcode or QR scanning feature is used:</p>
+<ul>
+<li>The code content is read inside the app in order to extract invoice information or its related reference number</li>
+<li>The resulting data is used only to help the user fill in expense or invoice details</li>
+<li>The barcode or QR content is not uploaded to our servers through this feature unless otherwise clearly stated inside the app or in a later update to this policy</li>
+</ul>
 
-<h2>6. Subscriptions</h2>
-<p>Linked to user account.</p>
+<h2>5. Use of Information</h2>
+<p>Data and permissions are used for the following purposes:</p>
+<ul>
+<li>Verifying subscription status inside the app</li>
+<li>Linking the subscription to the user account</li>
+<li>Displaying and improving ads through Google AdMob</li>
+<li>Enabling invoice scanning, barcode scanning, and invoice capture features when requested by the user</li>
+<li>Improving user experience</li>
+<li>Complying with Google Play policies</li>
+</ul>
 
-<h2>7. Account Deletion</h2>
-<p>Email: traikeyy@gmail.com</p>
+<h2>6. Information Sharing</h2>
+<p>Some data may be shared with:</p>
+<ul>
+<li>Google LLC through AdMob and Google services</li>
+</ul>
+<p>No data is sold or shared with any other parties except as described in this policy.</p>
 
-<h2>8. Age Requirement</h2>
-<p>18+ only.</p>
+<h2>7. Budget and Expense Data</h2>
+<p>All budget and expense data entered by the user:</p>
+<ul>
+<li>Is stored locally on the user's device only</li>
+<li>Is not uploaded to any external server</li>
+<li>Cannot be accessed by the developer or any third party as long as it remains stored locally on the user's device only</li>
+</ul>
 
-<h2>9. Changes</h2>
-<p>Policy may be updated.</p>
+<h2>8. Subscriptions</h2>
+<p>When a subscription is purchased inside the app:</p>
+<ul>
+<li>The subscription is linked to the user's account (UID)</li>
+<li>The subscription is verified through Google Play</li>
+<li>Only subscription status is stored on the server for verification purposes</li>
+</ul>
 
-<h2>10. Contact</h2>
+<h2>9. Account and Data Deletion</h2>
+<p>Users may request deletion of their account and related data at any time by contacting the following email address:</p>
+<p>traikeyy@gmail.com</p>
+
+<p>Please send your request with the subject: HomiGo Budget Account Deletion Request</p>
+
+<p>When a deletion request is processed, the following will be done:</p>
+<ul>
+<li>Deleting subscription data linked to the user on the server</li>
+<li>Deleting any account-related data stored on the server</li>
+<li>Data cannot be restored after deletion is completed</li>
+</ul>
+
+<p>Note: Budget, expense, and locally stored invoice files on the device can be removed by deleting the app or clearing the app data from the phone settings.</p>
+
+<h2>10. Age Requirement</h2>
+<p>The app is intended for users aged 18 years or older and is not directed to children.</p>
+
+<h2>11. Changes to This Privacy Policy</h2>
+<p>This policy may be updated from time to time, and any update may be published inside the app, on the store listing, or on this page.</p>
+
+<h2>12. Contact</h2>
+<p>For any privacy-related inquiries or data deletion requests:</p>
 <p>traikeyy@gmail.com</p>
 `
 }
